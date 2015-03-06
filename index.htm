@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html> 
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
+		<script src="Chart.min.js"></script>
+		<script src="MeteoModel.js"></script>
+		<script src="MeteoView.js"></script>
+	</head>
+  
+	<body onload="loadWeather()">
+    <h1>Прогноз погоды в г.Черкассы</h1>
+	 <div id="lst">
+	 </div>
+	 <div id="grChart">
+		<table class="chr">
+			<tr id="trTitle">
+				<td>
+					<h3>Температура, С</h3>
+				</td>
+				<td>
+					<h3>Влажность, %</h3>
+				</td>
+				<td>
+					<h3>Осадки, мм</h3>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<canvas id="temp" width="400" height="300"></canvas>
+				</td>
+				<td>
+					<canvas id="hum" width="400" height="300"></canvas>
+				</td>
+				<td>
+					<canvas id="rainfall" width="400" height="300"></canvas>
+				</td>
+			</tr>
+		</table>
+	 </div>
+    <script>
+var oWC = new WeekCollect();
+var oAM = new AppModel();
+oAM.collection = oWC;
+var oAV = new AppView({model: oAM});
+
+function loadWeather()
+{
+	var options = ({
+		dataType: "jsonp",
+      error:function(){
+        console.log('Ошибка обновления записей!');
+      },
+      success: function(){
+			oAV.render();
+			console.log('Записи обновлены');
+      }
+    });
+   console.log('Обновление записей...');
+	oAM.url = 'https://api.forecast.io/forecast/83fde11f53c56d29a4289c5abe6a0b45/49.26,32.3?units=si';
+	oAM.fetch(options);
+	oAM.url = "http://api.openweathermap.org/data/2.5/forecast/daily?"
+		+"q=Cherkasy&mode=json&units=metric&cnt=7"
+		+"&APPID=b391c66304fe1450ce9b6ba364d93233"
+	oAM.fetch(options);
+
+/*
+	var obj1 = [
+		{dat:1425407160000, temp_min:-1, temp_max:1,	hum:95,	rainfall:150},
+		{dat:1425427160000, temp_min:0, temp_max:2,	hum:93,	rainfall:180},
+		{dat:1425506400000, temp_min:1, temp_max:3,	hum:80,	rainfall:180},
+		{dat:1425592800000, temp_min:2, temp_max:4,	hum:92,	rainfall:180},
+		{dat:1425679200000, temp_min:3, temp_max:5,	hum:97,	rainfall:180},
+		{dat:1425765600000, temp_min:4, temp_max:6,	hum:90,	rainfall:180},
+		{dat:1425852000000, temp_min:5, temp_max:10,	hum:5,	rainfall:180}
+	]
+var obj2 = [
+		{dat:1425407160000, temp_min:5, temp_max:8,	hum:80,	rainfall:100},
+		{dat:1425427160000, temp_min:5, temp_max:8,	hum:60,	rainfall:160},
+		{dat:1425506400000, temp_min:5, temp_max:8,	hum:93,	rainfall:180},
+		{dat:1425592800000, temp_min:5, temp_max:8,	hum:93,	rainfall:180},
+		{dat:1425679200000, temp_min:5, temp_max:8,	hum:93,	rainfall:180},
+		{dat:1425765600000, temp_min:5, temp_max:8,	hum:93,	rainfall:180},
+		{dat:1425852000000, temp_min:5, temp_max:10,	hum:0,	rainfall:180}
+	]
+	oWC.addObjMeteo(obj1);
+	oAM.set(obj1);
+	oWC.addObjMeteo(obj2);
+	oAM.set(obj2);
+	oAV.render();
+*/
+}
+	 </script>	 
+  </body>
+</html>
