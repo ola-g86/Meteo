@@ -52,11 +52,11 @@ function loadWeather()
 	var options = ({
 		dataType: "jsonp",
       error:function(){
-        console.log('Ошибка обновления записей!');
+        console.log('Ошибка получения данных!');
       },
       success: function(){
 			oAV.render();
-			console.log('Записи обновлены');
+			console.log('Данные получены');
       }
     });
    console.log('Обновление записей...');
@@ -66,32 +66,6 @@ function loadWeather()
 		+"q=Cherkasy&mode=json&units=metric&cnt=7"
 		+"&APPID=b391c66304fe1450ce9b6ba364d93233"
 	oAM.fetch(options);
-
-/*
-	var obj1 = [
-		{dat:1425407160000, temp_min:-1, temp_max:1,	hum:95,	rainfall:150},
-		{dat:1425427160000, temp_min:0, temp_max:2,	hum:93,	rainfall:180},
-		{dat:1425506400000, temp_min:1, temp_max:3,	hum:80,	rainfall:180},
-		{dat:1425592800000, temp_min:2, temp_max:4,	hum:92,	rainfall:180},
-		{dat:1425679200000, temp_min:3, temp_max:5,	hum:97,	rainfall:180},
-		{dat:1425765600000, temp_min:4, temp_max:6,	hum:90,	rainfall:180},
-		{dat:1425852000000, temp_min:5, temp_max:10,	hum:5,	rainfall:180}
-	]
-var obj2 = [
-		{dat:1425407160000, temp_min:5, temp_max:8,	hum:80,	rainfall:100},
-		{dat:1425427160000, temp_min:5, temp_max:8,	hum:60,	rainfall:160},
-		{dat:1425506400000, temp_min:5, temp_max:8,	hum:93,	rainfall:180},
-		{dat:1425592800000, temp_min:5, temp_max:8,	hum:93,	rainfall:180},
-		{dat:1425679200000, temp_min:5, temp_max:8,	hum:93,	rainfall:180},
-		{dat:1425765600000, temp_min:5, temp_max:8,	hum:93,	rainfall:180},
-		{dat:1425852000000, temp_min:5, temp_max:10,	hum:0,	rainfall:180}
-	]
-	oWC.addObjMeteo(obj1);
-	oAM.set(obj1);
-	oWC.addObjMeteo(obj2);
-	oAM.set(obj2);
-	oAV.render();
-*/
 }
 	 </script>	 
   </body>

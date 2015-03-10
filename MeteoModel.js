@@ -22,12 +22,10 @@ DayModel = Backbone.Model.extend(
 			{
 				sum += dm.at(i).get(attr);
 			}
-			//this.set(attr, sum/dm.length);
 			return this.round(sum/dm.length, kolRound);
 		}
 		else
 		{
-			//this.set(attr, 0);
 			return 0;
 		}
 	},
@@ -121,7 +119,7 @@ AppModel = Backbone.Model.extend(
 	updateCollect:function(objWeather)
 	{
 		this.collection.addObjMeteo(objWeather);
-		console.log("updateCollect");
+		console.log("Коллекция обновлена");
 	},
 	//получим массив только нужных атрибутов
 	getArrAttr: function(attr, kolRound)
