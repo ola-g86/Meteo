@@ -1,0 +1,35 @@
+body
+{ 
+	font-family: arial, verdana, sans-serif;
+	background-color: #F8F8FF;
+	color: #000080; 
+	font-size:small;
+}
+h1
+{
+	text-align:center;
+	font-size:1.5em;
+}
+li 
+{
+	list-style-type: none; /* Убираем маркеры */
+}
+ul 
+{
+	margin-left: 0; /* Отступ слева в браузере IE и Opera */
+	padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+}
+table.chr
+{
+  text-align: center; 
+}
+#trTitle
+{
+	display: none;
+}
+td.temperature 
+{
+  font-size: 1.3em; 
+  text-align: center; 
+  width: 25%;
+}	
